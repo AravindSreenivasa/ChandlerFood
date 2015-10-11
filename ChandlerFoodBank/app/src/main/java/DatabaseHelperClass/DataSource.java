@@ -51,17 +51,47 @@ public class DataSource {
     public void prePopulateEvents()
     {
         ContentValues contentValue = new ContentValues();
-        contentValue.put(DbStrings.COLUMN_NAME, "I CAN HELP");
-        long insertId = database.insert(DbStrings.TABLE_CATRGORES, null, contentValue);
+        contentValue.put(DbStrings.COLUMN_NAME, "Back to School");
+        long insertId = database.insert(DbStrings.TABLE_EVENT, null, contentValue);
 
-        contentValue.put(DbStrings.COLUMN_NAME, "I NEED HELP");
-        insertId = database.insert(DbStrings.TABLE_CATRGORES, null, contentValue);
+        contentValue.put(DbStrings.COLUMN_NAME, "Opportunity Santa");
+        insertId = database.insert(DbStrings.TABLE_EVENT, null, contentValue);
 
-        contentValue.put(DbStrings.COLUMN_NAME, "UPCOMING EVENTS");
-        insertId = database.insert(DbStrings.TABLE_CATRGORES, null, contentValue);
+        contentValue.put(DbStrings.COLUMN_NAME, "Senior Santa");
+        insertId = database.insert(DbStrings.TABLE_EVENT, null, contentValue);
 
-        contentValue.put(DbStrings.COLUMN_NAME, "JOB OPPORTUNITIES");
-        insertId = database.insert(DbStrings.TABLE_CATRGORES, null, contentValue);
+        contentValue.put(DbStrings.COLUMN_NAME, "A walk in the park");
+        insertId = database.insert(DbStrings.TABLE_EVENT, null, contentValue);
+    }
+
+    public void prePopulateHelp()
+    {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(DbStrings.COLUMN_NAME, "Senior");
+        long insertId = database.insert(DbStrings.TABLE_HELP, null, contentValue);
+
+        contentValue.put(DbStrings.COLUMN_NAME, "Community Program");
+        insertId = database.insert(DbStrings.TABLE_HELP, null, contentValue);
+
+        contentValue.put(DbStrings.COLUMN_NAME, "Food bank");
+        insertId = database.insert(DbStrings.TABLE_HELP, null, contentValue);
+
+        contentValue.put(DbStrings.COLUMN_NAME, "Family Resource");
+        insertId = database.insert(DbStrings.TABLE_HELP, null, contentValue);
+    }
+
+    public void prePopulateJobs()
+    {
+        ContentValues contentValue = new ContentValues();
+        contentValue.put(DbStrings.COLUMN_NAME, "BILINGUAL CHILD WATCH MONITOR");
+        long insertId = database.insert(DbStrings.TABLE_JOB, null, contentValue);
+
+        contentValue.put(DbStrings.COLUMN_NAME, "Development Director");
+        insertId = database.insert(DbStrings.TABLE_JOB, null, contentValue);
+
+        contentValue.put(DbStrings.COLUMN_NAME, "Part-time program specialist");
+        insertId = database.insert(DbStrings.TABLE_JOB, null, contentValue);
+
     }
 
     public void AddUser(String username, String password){
@@ -117,5 +147,57 @@ public class DataSource {
         }
 
         return categories;
+    }
+
+    public ArrayList<String> GetEvents() {
+        ArrayList<String> events = new ArrayList<String>();
+        Cursor cursor = database.query(DbStrings.TABLE_EVENT, allColoumnns,null,null,null,null,null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+
+            events.add(cursor.getString(1));
+            cursor.moveToNext();
+        }
+
+        return events;
+    }
+
+    public ArrayList<String> GetPrograms() {
+        ArrayList<String> events = new ArrayList<String>();
+        Cursor cursor = database.query(DbStrings.TABLE_PROGRAMS, allColoumnns,null,null,null,null,null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+
+            events.add(cursor.getString(1));
+            cursor.moveToNext();
+        }
+
+        return events;
+    }
+
+    public ArrayList<String> GetHelp() {
+        ArrayList<String> events = new ArrayList<String>();
+        Cursor cursor = database.query(DbStrings.TABLE_HELP, allColoumnns,null,null,null,null,null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+
+            events.add(cursor.getString(1));
+            cursor.moveToNext();
+        }
+
+        return events;
+    }
+
+    public ArrayList<String> GetJobs() {
+        ArrayList<String> events = new ArrayList<String>();
+        Cursor cursor = database.query(DbStrings.TABLE_JOB, allColoumnns,null,null,null,null,null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()){
+
+            events.add(cursor.getString(1));
+            cursor.moveToNext();
+        }
+
+        return events;
     }
 }

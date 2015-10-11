@@ -47,7 +47,7 @@ public class HomePageActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Intent intent = new Intent(getBaseContext(),MainDetails.class);
-                intent.putExtra(EXTRA_MESSAGE, position);
+                intent.putExtra(EXTRA_MESSAGE, Integer.toString(position));
                 startActivity(intent);
             }
         });

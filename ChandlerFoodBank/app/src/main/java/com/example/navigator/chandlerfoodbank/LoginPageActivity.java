@@ -223,6 +223,9 @@ public class LoginPageActivity extends AppCompatActivity implements LoaderCallba
             }
             dataSource.AddUser(email,password);
             dataSource.prePopulateCategories();
+            dataSource.prePopulateEvents();
+            dataSource.prePopulateHelp();
+            dataSource.prePopulateJobs();
             dataSource.close();
             mAuthTask.execute((Void) null);
         }
