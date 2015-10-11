@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ public class MainDetails extends AppCompatActivity {
         String message = intent.getStringExtra(HomePageActivity.EXTRA_MESSAGE);
         setContentView(R.layout.activity_main_details);
 
-        ListView list_view = (ListView) findViewById(R.id.listview_details);
+        GridView list_view = (GridView) findViewById(R.id.listview_details);
 
         DataSource dataSource = new DataSource(getBaseContext());
         try {

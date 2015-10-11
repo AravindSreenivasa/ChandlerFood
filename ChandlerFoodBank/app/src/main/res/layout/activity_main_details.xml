@@ -7,18 +7,23 @@
     tools:context="com.example.navigator.chandlerfoodbank.MainDetails">
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/textView_details"
         android:gravity="center_vertical|center_horizontal" />
 
-    <ListView
+
+    <GridView
+        android:id="@+id/listview_details"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/listview_details"
-        android:layout_below="@+id/textView_details">
-
-    </ListView>
+        android:columnWidth="250dp"
+        android:numColumns="1"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        />
 
 </RelativeLayout>

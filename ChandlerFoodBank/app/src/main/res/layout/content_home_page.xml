@@ -17,8 +17,7 @@
         android:orientation="vertical"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/textView"
-        android:gravity="center_vertical|center_horizontal"
-        android:layout_alignParentBottom="false" />
+        android:gravity="center_vertical|center_horizontal" />
 
 
     <!--android:layout_alignParentTop="true"-->
