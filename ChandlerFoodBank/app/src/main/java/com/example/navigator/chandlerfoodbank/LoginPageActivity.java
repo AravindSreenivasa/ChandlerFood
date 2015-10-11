@@ -32,9 +32,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import DatabaseHelperClass.DataSource;
+import DatabaseHelperClass.SQLiteHelperClass;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -73,6 +77,22 @@ public class LoginPageActivity extends AppCompatActivity implements LoaderCallba
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        DataSource dataSource = new DataSource(getBaseContext());
+        try {
+            dataSource.open();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+            if (dataSource.isLoggedIn()) {
+                dataSource.close();
+                Intent intent = new Intent(this, HomePageActivity.class);
+                this.startActivity(intent);
+                this.finishActivity(0);
+            }
+
+
         setContentView(R.layout.activity_login_page);
         // Set up the login form.
         mContext = getApplicationContext();
@@ -195,6 +215,15 @@ public class LoginPageActivity extends AppCompatActivity implements LoaderCallba
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
+            DataSource dataSource = new DataSource(getBaseContext());
+            try {
+                dataSource.open();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            dataSource.AddUser(email,password);
+            dataSource.prePopulateCategories();
+            dataSource.close();
             mAuthTask.execute((Void) null);
         }
     }
